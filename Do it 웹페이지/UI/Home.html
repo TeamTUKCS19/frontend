@@ -1,33 +1,33 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <title>TUK PIC</title>
-  <link rel="stylesheet" href="css/Home.css">
+    <meta charset="UTF-8">
+    <title>TUK PIC</title>
+    <link rel="stylesheet" href="css/Home.css">
 </head>
 <style>
-  body {
-    background-image: url('images/background2.png');
-    background-size: cover; /* 배경 이미지가 창에 꽉 채우도록 설정 */
-    background-repeat: no-repeat; /* 배경 이미지 반복 없음 */
-  }
+    body {
+      background-image: url('images/background2.png');
+      background-size: cover; /* 배경 이미지가 창에 꽉 채우도록 설정 */
+      background-repeat: no-repeat; /* 배경 이미지 반복 없음 */
+    }
 </style>
 <body>
-  <nav>
+<nav>
     <ul>
-      <li>
-        <a href="#">Building</a>
-        <ul class="submenu" id="buildingMenu">
-          <!-- 링크는 JavaScript에서 동적으로 생성 -->
-        </ul>
-      </li>
-      <li><a href="#">My Page</a></li>
-      <li><a href="#">Home</a></li>
-      <li><a href="#">About</a></li>
-    </ul>   
-  </nav>
-  
-  <script>
+        <li>
+            <a href="#">Building</a>
+            <ul class="submenu" id="buildingMenu">
+                <!-- 링크는 JavaScript에서 동적으로 생성 -->
+            </ul>
+        </li>
+        <li><a href="#">My Page</a></li>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+    </ul>
+</nav>
+
+<script>
     document.addEventListener("DOMContentLoaded", function() {
       var buildingMenu = document.getElementById("buildingMenu");
       var commonAddress = "http://127.0.0.1:9900/register_building"; // 서버의 URL 주소
@@ -50,7 +50,7 @@
           // form 데이터 생성
           var formData = new FormData();
           formData.append("building_name", buildingName);
-
+          window.location.href = 'http://127.0.0.1:9900/UI/A_building.html'; // 다음 페이지로 이동
           // POST 요청 보내기
           fetch(commonAddress, {
             method: 'POST', // POST 요청으로 수정
@@ -65,7 +65,7 @@
           })
           .then(data => {
             console.log('Success:', data); // 여기서 data는 "building registered successfully"가 됩니다
-            window.location.href = 'http://127.0.0.1:5500/UI/A_building.html'; // 다음 페이지로 이동
+            
           })
           .catch(error => {
             console.error('Error:', error);
@@ -83,7 +83,7 @@
         buildingMenu.style.display = "none";
       });
     });
-  </script>
+</script>
 </body>
 </html>
 
