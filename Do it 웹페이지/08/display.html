@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>CSS display 속성</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    nav ul {
+      list-style:none;      
+    }
+    nav ul li {
+      display:inline-block; /* 인라인 레벨 요소와 블록 레벨 요소 모두 사용 , 마진과 패딩 사용 가능 */     
+      padding:20px; /* 콘텐츠와 테두리 간의 거리 : 20px */
+      margin:0 20px; /* 콘텐츠 간의 좌우 거리 : 20px */
+      border:1px solid #222;
+    }
+  </style>
+</head>
+<body>
+   <nav>
+     <ul>
+      <li>menu 1</li>
+      <li>menu 2</li>
+      <li>menu 3</li>
+      <li>menu 4</li>
+     </ul>
+   </nav>
+</body>
+</html>

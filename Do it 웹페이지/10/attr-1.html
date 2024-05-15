@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>속성 선택자</title>
+<style>
+   ul {
+		 list-style:none;
+   }
+	 li {
+		 width:120px;	 
+		 display:inline-block; /* 인라인과 블록 요소를 모두 이용할 수 있으며 너비나 높이 지정 가능, 가로로 배치 */
+		 margin:10px;
+	 }
+		li a {
+			padding: 5px 20px;
+			font-size: 14px;
+			text-decoration: none;
+			font-weight: bold;
+		}
+	 a[href]/* a태그의 href 속성이 있는 요소들의 상태를 변경*/ {
+		 background:yellow;
+		 border:1px solid #ccc;
+		 font-weight:normal;
+	 }
+</style>
+</head>
+
+<body>
+	<ul>
+		<li><a>메인 메뉴 : </a></li>
+		<li><a href="#">메뉴 1</a></li>
+		<li><a href="#">메뉴 2</a></li>
+		<li><a href="#">메뉴 3</a></li>
+		<li><a href="#">메뉴 4</a></li>
+	</ul>
+  </body>
+ </html>

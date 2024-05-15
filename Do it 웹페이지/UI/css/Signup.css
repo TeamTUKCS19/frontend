@@ -1,0 +1,76 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+#container{
+    width : 700px;
+    height : 700px;
+    margin: 20px auto;
+    text-align: center;
+}
+#header {
+    padding-top: 60px;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(215, 215, 215);
+    box-shadow: 2px -2px 3px 7px black;
+    border-radius: 2%;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1 {
+    font-family: 'Nunito', serif;
+    font-size: 40px;
+    color: black;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+h2 {
+    font-family: 'Nunito', sans-serif;
+    font-size: 18px;
+    color: black;
+    margin-left:150px;
+    margin-top:20px;
+}
+input{
+    padding-left: 5px;
+}
+#name{
+    width:200px;
+    height:30px;
+    margin-top:20px;
+    margin-left:46px;
+    border-radius: 5px;
+}
+#email{
+    width:200px;
+    height:30px;
+    margin-top:20px;
+    margin-left:28px;
+    border-radius: 5px;
+}
+#password{
+    width:200px;
+    height:30px;
+    margin-top:20px;
+    margin-left:10px;
+    border-radius: 5px;
+}
+
+.signup-info, .signup-email, .signup-password {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    justify-content: flex-start; /* 입력란을 왼쪽 정렬합니다. */
+}
+.form_btn {
+    margin-top:200px;
+    width:100px;
+    height: 40px;
+    border-radius: 5px;
+    box-shadow: -5px -5px 10px #fff, 5px 5px 8px #babebc;
+
+}

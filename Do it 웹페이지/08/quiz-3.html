@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta charset="UTF-8">
+		<title>연습문제 3</title>
+		<style>
+			ul{/*ul 요소의 불릿을 없애기 위해 스타일을 none으로 지정*/
+				list-style: none;
+			}
+			ul li{
+				float:left; /* 리스트를 왼쪽으로 플로팅 함으로써 인라인 요소로 만들어줌*/
+			}
+			a{
+				display:block; /* display 속성을 block으로 지정함으로써 블록 요소들을 인라인 요소로 고정 */
+				padding: 10px 20px;
+				background-color: #ccc;
+			}
+			a:link, a:visited {
+				color:black;
+				text-decoration: none;
+			}
+			a:hover {
+				background-color:#000;
+				color:#fff;
+			}
+		</style>
+	</head>
+	<body>
+		<nav>
+			<ul>
+				<li><a href="#">메뉴1</a></li>
+				<li><a href="#">메뉴2</a></li>
+				<li><a href="#">메뉴3</a></li>
+				<li><a href="#">메뉴4</a></li>
+			</ul>
+		</nav>
+	</body>
+</html>

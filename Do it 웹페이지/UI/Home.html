@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>TUK PIC</title>
+  <link rel="stylesheet" href="css/Home.css">
+</head>
+<style>
+  body {
+    background-image: url('images/background2.png');
+    background-size: cover; /* 배경 이미지가 창에 꽉 채우도록 설정 */
+    background-repeat: no-repeat; /* 배경 이미지 반복 없음 */
+  }
+</style>
+<body>
+  <nav>
+    <ul>
+      <li>
+        <a href="#">Building</a>
+        <ul class="submenu" id="buildingMenu">
+          <!-- 링크는 JavaScript에서 동적으로 생성 -->
+        </ul>
+      </li>
+      <li><a href="#">My Page</a></li>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">About</a></li>
+    </ul>   
+  </nav>
+  
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      var buildingMenu = document.getElementById("buildingMenu");
+      var commonAddress = "http://127.0.0.1:9900/register_building"; // 서버의 URL 주소
+
+      // 각 건물에 대한 이름과 텍스트 매핑
+      var buildingNames = ["A동", "B동", "C동", "D동", "E동", "G동"];
+
+      // 링크 생성
+      buildingNames.forEach(function(buildingName) {
+        var li = document.createElement("li");
+        var a = document.createElement("a");
+        a.textContent = buildingName;
+        a.href = "#"; // 임시로 "#"으로 설정
+        li.appendChild(a);
+        buildingMenu.appendChild(li);
+
+        a.addEventListener("click", function(event) {
+          event.preventDefault(); // 기본 동작인 링크 이동을 막음
+
+          // form 데이터 생성
+          var formData = new FormData();
+          formData.append("building_name", buildingName);
+
+          // POST 요청 보내기
+          fetch(commonAddress, {
+            method: 'POST', // POST 요청으로 수정
+            body: formData,
+          })
+          .then(response => {
+            if (response.status === 201) { // 응답 코드가 201인지 확인
+              return response.text(); // 텍스트 응답으로 변환
+            } else {
+              throw new Error('Unexpected response status: ' + response.status);
+            }
+          })
+          .then(data => {
+            console.log('Success:', data); // 여기서 data는 "building registered successfully"가 됩니다
+            window.location.href = 'http://127.0.0.1:5500/UI/A_building.html'; // 다음 페이지로 이동
+          })
+          .catch(error => {
+            console.error('Error:', error);
+          });
+        });
+      });
+
+      // 마우스를 올렸을 때 서브메뉴가 보이도록 설정
+      buildingMenu.parentNode.addEventListener("mouseenter", function() {
+        buildingMenu.style.display = "block";
+      });
+
+      // 마우스를 벗어났을 때 서브메뉴가 숨겨지도록 설정
+      buildingMenu.parentNode.addEventListener("mouseleave", function() {
+        buildingMenu.style.display = "none";
+      });
+    });
+  </script>
+</body>
+</html>
+
+
