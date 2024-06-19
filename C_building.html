@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>C_building</title>        
+    <link rel="stylesheet" href="css/Building.css">
+</head>
+<style>
+  body {
+    background-image: url('images/background2.png');
+    background-size: cover; /* 배경 이미지가 창에 꽉 채우도록 설정 */
+    background-repeat: no-repeat; /* 배경 이미지 반복 없음 */
+  }
+</style>
+<body>
+  <nav>
+    <ul>
+      <li><a href="#">C동 건물</a></li>
+      <li><a href="#">My Page</a></li>
+      <li><a href="http://127.0.0.1:5500/UI/Home.html">Home</a></li>
+      <li><a href="#">About</a></li>
+    </ul>   
+  </nav>
+  <nav class="sub-nav">
+    <ul>
+      <li><a href="#" id="east">동쪽</a></li>
+      <li><a href="#" id="west">서쪽</a></li>
+      <li><a href="#" id="south">남쪽</a></li>
+      <li><a href="#" id="north">북쪽</a></li>
+    </ul>
+  </nav>
+
+  <!-- 모달 -->
+  <div id="myModal" class="modal">
+    <!-- 모달 내용 -->
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <p id="modal-text"></p>
+      <div class="modal-buttons">
+        <form id="modal-form">
+          <button type="button" id="yes">예</button>
+          <button type="button" id="no">아니오</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      var modal = document.getElementById("myModal");
+      var modalForm = document.getElementById("modal-form");
+      var yesButton = document.getElementById("yes");
+      var noButton = document.getElementById("no");
+
+      // 예 버튼 클릭 시 이벤트 핸들러
+      yesButton.addEventListener("click", function() {
+        var building = "C동"; // 선택한 건물
+        var direction = modal.getAttribute("data-direction"); // 선택한 방향
+
+        // 폼 데이터 생성
+        var formData = new FormData();
+        formData.append("building", building);
+        formData.append("direction", direction);
+
+        // 서버에 등록하는 코드
+        fetch("/register_building_direction", {
+          method: "POST",
+          body: formData
+        })
+        .then(response => {
+          if (response.ok) {
+            alert("건물과 방향이 성공적으로 등록되었습니다.");
+            modal.style.display = "none"; // 모달 닫기
+          } else {
+            throw new Error("등록에 실패했습니다.");
+          }
+        })
+        .catch(error => {
+          console.error("Error:", error);
+        });
+      });
+
+      // 모달 닫기 버튼 클릭 시 모달 닫기
+      document.getElementsByClassName("close")[0].addEventListener("click", function() {
+        modal.style.display = "none";
+      });
+
+
+      // 아니오 버튼 클릭 시 모달 닫기
+      noButton.addEventListener("click", function() {
+        modal.style.display = "none";
+      });
+
+      // 서브메뉴에서 방향을 클릭했을 때 모달 표시
+      var subNavItems = document.querySelectorAll(".sub-nav a");
+      subNavItems.forEach(function(item) {
+        item.addEventListener("click", function() {
+          var direction = item.textContent; // 클릭한 방향
+          document.getElementById("modal-text").textContent = direction + " 방향으로 등록하시겠습니까?";
+          modal.setAttribute("data-direction", direction); // 방향 데이터를 모달에 저장
+          modal.style.display = "block"; // 모달 표시
+        });
+      });
+    });
+  </script>
+</body>
+</html>
